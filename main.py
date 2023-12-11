@@ -2,41 +2,42 @@ import httpx
 import pandas as pd
 import os
 
+#commented out zeta as under maintainence
 
-def fetch_zeta_orderbook_snap(symbol:str):
+#def fetch_zeta_orderbook_snap(symbol:str):
 
-    try:
-        data = httpx.get("https://dex-mainnet-webserver-ecs.zeta.markets/orderbooks?marketIndexes[]=137").json()
-        if 'orderbooks' in data and symbol in data['orderbooks']:
+   # try:
+       # data = httpx.get("https://dex-mainnet-webserver-ecs.zeta.markets/orderbooks?marketIndexes[]=137").json()
+       # if 'orderbooks' in data and symbol in data['orderbooks']:
             # Extract asks and bids
-            asks = data['orderbooks'][symbol][0]['asks']
-            bids = data['orderbooks'][symbol][0]['bids']
+          #   asks = data['orderbooks'][symbol][0]['asks']
+           #  bids = data['orderbooks'][symbol][0]['bids']
             
             # Convert to DataFrames
-            asks_df = pd.DataFrame(asks).rename(columns={"price": "ask_price", "size": "ask_size"})
-            bids_df = pd.DataFrame(bids).rename(columns={"price": "bid_price", "size": "bid_size"})
+            # asks_df = pd.DataFrame(asks).rename(columns={"price": "ask_price", "size": "ask_size"})
+            # bids_df = pd.DataFrame(bids).rename(columns={"price": "bid_price", "size": "bid_size"})
             
             # Determine max length and extend DataFrames if necessary
-            max_len = max(len(bids_df), len(asks_df))
+            # max_len = max(len(bids_df), len(asks_df))
             
-            bids_df = bids_df.reindex(range(max_len))
-            asks_df = asks_df.reindex(range(max_len))
+            # bids_df = bids_df.reindex(range(max_len))
+            # asks_df = asks_df.reindex(range(max_len))
 
             # Reset index for clean merge
-            bids_df = bids_df.reset_index(drop=True)
-            asks_df = asks_df.reset_index(drop=True)
+           #  bids_df = bids_df.reset_index(drop=True)
+           #  asks_df = asks_df.reset_index(drop=True)
 
             # Merge DataFrames based on index
-            orderbook_df = pd.concat([bids_df, asks_df], axis=1)
-            orderbook_df['protocol_name'] = 'Zeta Markets'
-            return orderbook_df
-        else:
-            print("Symbol not found in data.")
-            return None
+           #  orderbook_df = pd.concat([bids_df, asks_df], axis=1)
+           #  orderbook_df['protocol_name'] = 'Zeta Markets'
+          #   return orderbook_df
+       #  else:
+          #   print("Symbol not found in data.")
+          #   return None
 
-    except Exception as e:
-        print(e)
-        pass
+    # except Exception as e:
+     #    print(e)
+     #    pass
 
 def fetch_hyperliquid_ob_snap(symbol:str):
     body = {
