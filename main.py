@@ -152,11 +152,11 @@ def fetch_and_save_vertex_ob_snap(symbol:str, filename:str):
             orderbook_df.to_csv(filename, index=False)
 
 
-symbols = ["ETH", "BTC", "SOL", "ARB"]
+symbols = ["ETH", "BTC", "SOL", "ARB","TIA"]
 
 def main():
     for symbol in symbols:
-        fetch_and_save_zeta_orderbook_snap(symbol, filename=f'zeta_{symbol}_orderbook_snap.csv')
+        #fetch_and_save_zeta_orderbook_snap(symbol, filename=f'zeta_{symbol}_orderbook_snap.csv')
         fetch_and_save_hyperliquid_ob_snap(symbol, filename=f'hyperliquid_{symbol}_orderbook_snap.csv')
         fetch_and_save_vertex_ob_snap(symbol, filename=f'vertex_{symbol}_orderbook_snap.csv')
 
