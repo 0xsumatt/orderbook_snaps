@@ -115,17 +115,17 @@ def fetch_vertex_ob_snap(symbol:str):
 
 
 
-def fetch_and_save_zeta_orderbook_snap(symbol:str, filename:str):
-    orderbook_df = fetch_zeta_orderbook_snap(symbol)
-    orderbook_df['timestamp'] = pd.Timestamp.now()
+#def fetch_and_save_zeta_orderbook_snap(symbol:str, filename:str):
+   # orderbook_df = fetch_zeta_orderbook_snap(symbol)
+   # orderbook_df['timestamp'] = pd.Timestamp.now()
 
-    if orderbook_df is not None:
-        if os.path.exists(filename):
-            existing_df = pd.read_csv(filename)
-            combined_df = pd.concat([existing_df, orderbook_df], ignore_index=True)
-            combined_df.to_csv(filename, index=False)
-        else:
-            orderbook_df.to_csv(filename, index=False)
+   # if orderbook_df is not None:
+      #  if os.path.exists(filename):
+       #     existing_df = pd.read_csv(filename)
+       #     combined_df = pd.concat([existing_df, orderbook_df], ignore_index=True)
+       #     combined_df.to_csv(filename, index=False)
+       # else:
+          #  orderbook_df.to_csv(filename, index=False)
 
 def fetch_and_save_hyperliquid_ob_snap(symbol:str, filename:str):
     orderbook_df = fetch_hyperliquid_ob_snap(symbol)
